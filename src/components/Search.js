@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { search } from '../redux/actions/search'
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Input from '@material-ui/core/Input';
@@ -11,7 +9,10 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
         marginBottom: 40,
-        alignItems: 'center',
+        alignItems: 'center', 
+        '@media (max-width:450px)':{
+            marginLeft: 60,
+        }
     },
     input: {
         marginRight: 20,
@@ -50,15 +51,4 @@ Search.propTypes = {
     classes: PropTypes.object.isRequired,
 };
   
-const mapStateToProps = (state) => {
-    // console.log('state from Search component ', state.search.text)
-    return {
-    //   persons: state.personsList.persons,
-      text: state.search.text
-    }
-}  
-
-const mapDispatchToProps = (dispatch) => ({
-    search: (text) => dispatch(search(text))
-})
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Search));
+export default withStyles(styles)(Search);

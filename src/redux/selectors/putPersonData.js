@@ -12,9 +12,7 @@ export default function putPersonData (state, changeInfo) {
         };
         Axios.put(`http://localhost:8080/update/${id}`,newPersonInfo)
             .then(response => { 
-                response.statusText === 'OK' &&
-                //  console.log(response)
-                changeInfo(response.data)
+                response.statusText === 'OK' && changeInfo(response.data)
             })
             .catch(e => console.error(e) )
 }

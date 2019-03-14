@@ -1,11 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import getSearchedPersons from '../redux/selectors/getSearchedPersons';
 import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import Search from './Search';
-import PersonCard from './PersonCard';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
+import Search from '../containers/Search';
+import PersonCard from '../containers/PersonCard';
 
 const styles = theme => ({
     cardContainer: {
@@ -14,15 +12,39 @@ const styles = theme => ({
       width: '100%',
       flexWrap: 'wrap',
       listStyle: 'none',
-      margin: '0 auto',
+      justifyContent: 'center',
+      '@media (max-width: 700px)': {
+        display: 'block',
+        maxWidth: 600,
+        margin: '0 auto',
+      },
+      '@media (max-width: 400px)': {
+        maxWidth: 300,
+        margin: 0,
+      },
     },
     paginetionContainer: {
       display: 'flex',
       listStyle: 'none',
       justifyContent: 'center',
+      maxWidth: 1000,
+      '@media (max-width: 700px)': {
+        maxWidth: 600,
+        display: 'grid'
+      },
+      '@media (max-width: 400px)': {
+        maxWidth: 300,
+        margin: '0 auto',
+      }
     },
     button: {
       margin: theme.spacing.unit,
+      '@media (max-width: 700px)': {
+        width: 400,
+      },
+      '@media (max-width: 400px)': {
+        width: 300,
+      }
     },
 });
 
@@ -148,10 +170,4 @@ Pagination.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({personsList: {persons, count, error }, search: {text}}) => {
-    // console.log('persons from pagination ', persons)
-    return {
-      persons: getSearchedPersons(persons, text)
-    }
-}  
-export default connect(mapStateToProps)(withStyles(styles)(Pagination));
+export default withStyles(styles)(Pagination);

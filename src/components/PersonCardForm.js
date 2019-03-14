@@ -3,11 +3,18 @@ import putPersonData from '../redux/selectors/putPersonData';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-// import putPersonData from '../redux/selectors/putPersonData';
 
 const styles = theme => ({
-    margin: {
+    form: {
         margin: theme.spacing.unit,
+        maxWidth: 1000,
+        '@media (max-width: 800px)': {
+            maxWidth: 600,
+        }
+    },
+    button: {
+        position: 'absolute',
+        margin: '60px 0',
     }
 })
 
@@ -24,7 +31,6 @@ class PersonCardForm extends React.Component {
         }
     }
    
-
     onInputChange = (event) => {
           event.persist();
           const { name, value } = event.target;
@@ -43,7 +49,7 @@ class PersonCardForm extends React.Component {
         return (
         <form 
             onSubmit = {this.changeInfo}
-            className={classes.margin}
+            className={classes.form}
         >
             <TextField 
               type='text' 
@@ -76,6 +82,7 @@ class PersonCardForm extends React.Component {
                 onChange={this.onInputChange}
             />
             <Button 
+              className = {classes.button}
               size="small" 
               color="primary" 
               style={{display:'inline'}}

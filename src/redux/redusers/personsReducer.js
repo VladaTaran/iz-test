@@ -18,10 +18,8 @@ export function personsReducer (state = initialState, action) {
                 error: true
             }
         case 'EDIT_PERSON_INFO':
-            
             const result = state.persons.map(person => {
                 if ( person.id === action.id ) {
-
                     return {
                         ...person,
                         ...action.updates
@@ -29,17 +27,11 @@ export function personsReducer (state = initialState, action) {
                 } else {
                     return person
                 }
-            })
-            console.log('result object is ', {
-                ...state,
-                persons: result
             });
-
             return {
                 ...state,
                 persons: result
             };
-
         default: 
             return state
     }
