@@ -10,6 +10,7 @@ const styles = theme => ({
       display: 'flex',
       maxWidth: 1000,
       width: '100%',
+      margin: '0 auto',
       flexWrap: 'wrap',
       listStyle: 'none',
       justifyContent: 'center',
@@ -28,6 +29,7 @@ const styles = theme => ({
       listStyle: 'none',
       justifyContent: 'center',
       maxWidth: 1000,
+      margin: '0 auto',
       '@media (max-width: 700px)': {
         maxWidth: 600,
         display: 'grid'

@@ -14,7 +14,7 @@ const styles = theme => ({
     },
     button: {
         position: 'absolute',
-        margin: '60px 0',
+        margin: '64px 0',
     }
 })
 
