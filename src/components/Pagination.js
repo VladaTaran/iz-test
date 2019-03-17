@@ -52,45 +52,55 @@ const styles = theme => ({
 
 class Pagination extends React.Component {
     state = {
-        currentPage: 1,
-        cardsPerPage: 9,
-        isPrevBtnActive: false,
-        isNextBtnActive: true,
+      currentPage: 1,
+      cardsPerPage: 9,
+      offset: 0,
+      isPrevBtnActive: false,
+      isNextBtnActive: true,
+    }
+  
+    componentDidMount() {
+      this.props.getPersons(this.state.cardsPerPage,this.state.offset)
     }
 
     changePage(i) {
         this.setState({ currentPage: i})
+        this.props.getPersons(this.state.cardsPerPage, ((i-1)*this.state.cardsPerPage))
       }
 
       firstPage = () => {
         this.setState({ currentPage: 1})
+        this.props.getPersons(this.state.cardsPerPage, 0)
       }
 
       prevPage = () => {
-        this.setState({ currentPage: this.state.currentPage - 1})
+        this.setState({ currentPage: this.state.currentPage - 1});
+          this.props.getPersons(this.state.cardsPerPage, this.state.cardsPerPage * ( this.state.currentPage-2) )
       }
 
       nextPage = () => {
-        this.setState({currentPage: this.state.currentPage + 1})
+        this.setState({
+          currentPage: this.state.currentPage + 1,
+        });
+        this.props.getPersons(this.state.cardsPerPage, this.state.cardsPerPage * this.state.currentPage );
       }
 
       lastPage = totalPages => {
-        this.setState({currentPage: totalPages})
+        this.setState({currentPage: totalPages});
+        this.props.getPersons(this.state.cardsPerPage, ((totalPages-1)*this.state.cardsPerPage)+1)
       }
+    
 
     render() {
-        let { classes, persons } = this.props;
+        let { classes, persons, count } = this.props;
         let { currentPage, 
             cardsPerPage, 
             isPrevBtnActive, 
             isNextBtnActive, 
         } = this.state;
-        
+
         //Pagination logic
-        const totalPages = Math.ceil(persons.length / cardsPerPage);
-        const startCard = (currentPage - 1) * cardsPerPage;
-        const endCard = startCard + cardsPerPage;
-        const currentCards = persons.slice(startCard, endCard);
+        const totalPages = Math.ceil(count / cardsPerPage);
 
         const lowerPageNumber = Math.min(Math.max(currentPage - 2, 1), totalPages);
         const upperPageNumber = Math.min(Math.max(currentPage + 2, 3),totalPages);
@@ -107,7 +117,7 @@ class Pagination extends React.Component {
             <div>
                 <Search />
                 <ul className={classes.cardContainer}>
-                    {currentCards.map(person => (
+                    {persons.map(person => (
                         <li key = {person.id+person.name}>
                             <PersonCard
                               id = {person.id} 
@@ -136,7 +146,7 @@ class Pagination extends React.Component {
                         Prev
                     </Button>
 
-                    {range.map(i => (
+                    {range.map(i => ( 
                         <Button
                           key={i+'1erj'}
                           variant="contained"
