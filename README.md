@@ -5,12 +5,12 @@ Data from api provided in JSON format. <br>
 
 ## General query structure
 
-`
+```
 {
     data : array Person,
     count: number of responses to the request
 }
-`
+```
 <br>
 
 ```
@@ -34,7 +34,9 @@ GET / : {
     funds: int as string, // (For example, if 100, it will show results where funds> 100, if a negative number is less)
     phone: string
 };
-
+```
+<br>
+```
 PUT /update/:id : {
     name: string,
     city: string,
