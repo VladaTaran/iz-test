@@ -26,26 +26,23 @@ Person: {
 Api supports the following query paths:<br>
 localhost:8080:<br>
 GET / : <br>
-```
 {
-    limit: string,
-    offset: string,
-    name: string,
-    city: string,
-    funds: int as string, // (For example, if 100, it will show results where funds> 100, if a negative number is less)
-    phone: string
-};
-```
+    limit: string,<br>
+    offset: string,<br>
+    name: string,<br>
+    city: string,<br>
+    funds: int as string, // (For example, if 100, it will show results where funds> 100, if a negative number is less)<br>
+    phone: string<br>
+};<br>
 <br>
-PUT /update/:id :
-```
-{
-    name: string,
-    city: string,
-    funds: string,
-    phone: string
-}
-```
+<br>
+PUT /update/:id :<br>
+{<br>
+    name: string,<br>
+    city: string,<br>
+    funds: string,<br>
+    phone: string<br>
+}<br>
 <br>
 
 Use [Axios](https://www.npmjs.com/package/axios) as a library for HTTP requests.<br>
