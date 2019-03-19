@@ -57,37 +57,46 @@ class Pagination extends React.Component {
       offset: 0,
       isPrevBtnActive: false,
       isNextBtnActive: true,
+      name: ''
     }
   
     componentDidMount() {
       this.props.getPersons(this.state.cardsPerPage,this.state.offset)
     }
 
-    changePage(i) {
-        this.setState({ currentPage: i})
-        this.props.getPersons(this.state.cardsPerPage, ((i-1)*this.state.cardsPerPage))
+    changePage = (i) => {
+      this.setState({ currentPage: i});
+      const { name, city, funds, phone } = this.props;
+      const { cardsPerPage } = this.state;
+      this.props.getPersons(cardsPerPage, ( (i-1)*cardsPerPage ),name, city, funds, phone)
       }
 
       firstPage = () => {
-        this.setState({ currentPage: 1})
-        this.props.getPersons(this.state.cardsPerPage, 0)
+        this.setState({ currentPage: 1});
+        const { name, city, funds, phone } = this.props;
+        const { cardsPerPage }  = this.state;      
+        this.props.getPersons(cardsPerPage, 0, name, city, funds, phone)
       }
 
       prevPage = () => {
         this.setState({ currentPage: this.state.currentPage - 1});
-          this.props.getPersons(this.state.cardsPerPage, this.state.cardsPerPage * ( this.state.currentPage-2) )
+        const { name, city, funds, phone } = this.props;
+        const { cardsPerPage, currentPage } = this.state;
+        this.props.getPersons(cardsPerPage, cardsPerPage * (currentPage-2), name, city, funds, phone);
       }
 
       nextPage = () => {
-        this.setState({
-          currentPage: this.state.currentPage + 1,
-        });
-        this.props.getPersons(this.state.cardsPerPage, this.state.cardsPerPage * this.state.currentPage );
+        this.setState({ currentPage: this.state.currentPage + 1 });
+        const { name, city, funds, phone } = this.props;
+        const { cardsPerPage, currentPage } = this.state;
+        this.props.getPersons(cardsPerPage, cardsPerPage * currentPage, name, city, funds, phone);
       }
 
       lastPage = totalPages => {
         this.setState({currentPage: totalPages});
-        this.props.getPersons(this.state.cardsPerPage, ((totalPages-1)*this.state.cardsPerPage)+1)
+        const { name, city, funds, phone } = this.props;
+        const { cardsPerPage } = this.state;
+        this.props.getPersons(cardsPerPage, ( (totalPages-1)*cardsPerPage )+1, name, city, funds, phone)
       }
     
 
@@ -95,6 +104,7 @@ class Pagination extends React.Component {
         let { classes, persons, count } = this.props;
         let { currentPage, 
             cardsPerPage, 
+            offset,
             isPrevBtnActive, 
             isNextBtnActive, 
         } = this.state;
@@ -115,7 +125,11 @@ class Pagination extends React.Component {
 
         return (
             <div>
-                <Search />
+                <Search 
+                  limit = {cardsPerPage}
+                  offset = {offset}
+
+                />
                 <ul className={classes.cardContainer}>
                     {persons.map(person => (
                         <li key = {person.id+person.name}>

@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { getPersons } from '../redux/selectors/getPersons';
 import Pagination from '../containers/Pagination';
 
+
 class App extends Component {
-  // componentDidMount() {
-  //   this.props.dispatch(getPersons('http://localhost:8080/?limit=9&offset='))
-  // }
   render() {
     const { error } = this.props;
     return (
@@ -17,9 +14,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({personsList: {persons, count, error }}) => ({
-  persons,
-  count,
+const mapStateToProps = ({personsList: { error }}) => ({
   error
 });
 

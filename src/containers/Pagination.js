@@ -1,15 +1,20 @@
 import { connect } from 'react-redux';
-import getSearchedPersons from '../redux/selectors/getSearchedPersons';
-import { getPersons } from '../redux/selectors/getPersons';
+import getPersons from '../redux/selectors/getPersons';
 import Pagination from '../components/Pagination';
 
-
-const mapStateToProps = ({personsList: {persons, count, error }, search: {text}}) => ({
-    persons: getSearchedPersons(persons, text),
-    count
-  }); 
+const mapStateToProps = ({personsList: {persons, count, error, name, city, funds, phone }}) => ({ 
+      persons,
+      count,
+      name,
+      city,
+      funds,
+      phone
+}); 
    
 const mapDispatchToProps = (dispatch) => ({
-  getPersons: (limit, offset) => dispatch(getPersons(limit, offset))
+  getPersons: (limit, offset, name, city, funds, phone) => dispatch(getPersons(limit, offset, name, city, funds, phone))
 })
-  export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
+
+ 

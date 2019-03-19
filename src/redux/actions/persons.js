@@ -1,7 +1,12 @@
-export function personsListSuccess(persons) {
+export function personsListSuccess(persons, count, name, city, funds, phone) {
     return {
         type: 'PERSONS_LIST_DATA_SUCCESS',
-        persons
+        persons,
+        count,
+        name, 
+        city, 
+        funds,
+        phone
     }
 };
 

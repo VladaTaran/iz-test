@@ -1,13 +1,23 @@
 import Axios from 'axios';
 import { personsListSuccess, personsListFailure } from '../actions/persons';
 
-export function getPersons(limit, offset) {
-    const url = `http://localhost:8080/?limit=${limit}&offset=${offset}`;
+const getPersons = (limit, offset, name, city, funds, phone) => {
+    const url = 'http://localhost:8080/';
     return (dispatch) => {
-        Axios.get(url)
-         .then(response => {
-             dispatch(personsListSuccess(response.data))
-          })
-         .catch(error=>dispatch(personsListFailure(error)))
+        Axios.get(url, {
+            params: {
+                limit,
+                offset,
+                name,
+                city,
+                funds,
+                phone
+            }
+        })
+        .then(response => {
+            dispatch(personsListSuccess(response.data.data, response.data.count, name, city, funds, phone))
+        })
+        .catch(error=>dispatch(personsListFailure(error)))
     }
 }
+export default getPersons;

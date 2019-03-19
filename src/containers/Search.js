@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import { search } from '../redux/actions/search';
+import getPersons from '../redux/selectors/getPersons';
 import Search from '../components/Search';
 
 const mapStateToProps = (state) => ({
-    text: state.search.text
-  });
+  persons: state.personsList.persons
+});
   
-  const mapDispatchToProps = (dispatch) => ({
-      search: (text) => dispatch(search(text))
-  });
+const mapDispatchToProps = (dispatch) => ({
+  getPersons: (limit, offset, name, city, funds, phone) => dispatch(getPersons(limit, offset, name, city, funds, phone))
+});
 
-
-  export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
