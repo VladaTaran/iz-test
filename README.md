@@ -13,7 +13,7 @@ Data from api provided in JSON format. <br>
 `
 <br>
 
-`
+```
 Person: {
     id: int,
     name: string,
@@ -21,11 +21,11 @@ Person: {
     city: string,
     phone: string
 }
-`
+```
 <br>
 Api supports the following query paths:<br>
-`
-localhost:8080:
+localhost:8080:<br>
+```
 GET / : {
     limit: string,
     offset: string,
@@ -40,7 +40,8 @@ PUT /update/:id : {
     city: string,
     funds: string,
     phone: string
-}`
+}
+```
 <br>
 
 Use [Axios](https://www.npmjs.com/package/axios) as a library for HTTP requests.<br>
