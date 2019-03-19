@@ -25,8 +25,9 @@ Person: {
 <br>
 Api supports the following query paths:<br>
 localhost:8080:<br>
+GET / :
 ```
-GET / : {
+{
     limit: string,
     offset: string,
     name: string,
@@ -36,8 +37,9 @@ GET / : {
 };
 ```
 <br>
+PUT /update/:id :
 ```
-PUT /update/:id : {
+{
     name: string,
     city: string,
     funds: string,
