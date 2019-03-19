@@ -25,7 +25,7 @@ Person: {
 <br>
 Api supports the following query paths:<br>
 localhost:8080:<br>
-GET / :
+GET / : <br>
 ```
 {
     limit: string,
